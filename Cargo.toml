@@ -4,5 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+anyhow = "1"
 tokio = { version = "1", features = ["full"] }
 axum = "0.7.9"
+
+[[bin]]
+name = "astronote"  # Binary name that matches your Docker CMD
+path = "src/main.rs"  # Path to the main entry point
