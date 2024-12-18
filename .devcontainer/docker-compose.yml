@@ -4,10 +4,12 @@ services:
     image: mcr.microsoft.com/devcontainers/rust:1-1-bullseye
     volumes:
       - ../..:/workspaces:cached
-    network_mode: service:db
     command: sleep infinity
     ports:
       - "3000:3000"
+    networks:
+      - shared-network
+
   db:
     image: postgres:latest
     restart: unless-stopped
@@ -17,6 +19,11 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: postgres
+    networks:
+      - shared-network
 
 volumes:
   postgres-data:
+
+networks:
+  shared-network:
